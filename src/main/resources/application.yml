@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: yu-ai-agent
+  profiles:
+    active: local
+
+  datasource:
+    url: jdbc:postgresql://rm-cn-y6e4pfdog0002r6o.rwlb.huhehaote.rds.aliyuncs.com:5432/ai-agent
+    username: travel
+    password: 66euiLQ80
+
+  ai:
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        dimensions: 1536
+        distance-type: COSINE_DISTANCE
+        max-document-batch-size: 10000 # Optional: Maximum number of documents per batch
+    mcp:
+      client:
+        stdio:
+          servers-configuration: classpath:mcp-servers.json
+        type: sync
+        enabled: true
+        request-timeout: 300000
+
+
+
+#    mcp:
+#      client:
+#        sse:
+#          connections:
+#            server1:
+#              url: http://localhost:8127
+#        stdio:
+#          servers-configuration: classpath:mcp-servers.json
+
+server:
+  port: 8102
+  servlet:
+    context-path: /api
+# springdoc-openapi
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.ui.ailvyou.controller
+# knife4j
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor: debug

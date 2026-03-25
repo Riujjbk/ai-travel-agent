@@ -1,0 +1,13 @@
+spring:
+  ai:
+    mcp:
+      server:
+        name: ai-image-search-mcp
+        version: 0.0.1
+        type: SYNC
+        stdio: true
+
+  # 舍去其它输出带来的干扰
+  main:
+    web-application-type: none
+    banner-mode: off
