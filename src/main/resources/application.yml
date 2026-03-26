@@ -6,8 +6,8 @@ spring:
 
   datasource:
     url: jdbc:postgresql://rm-cn-y6e4pfdog0002r6o.rwlb.huhehaote.rds.aliyuncs.com:5432/ai-agent
-    username: travel
-    password: 66euiLQ80
+    username: 
+    password: 
 
   ai:
     vectorstore:
