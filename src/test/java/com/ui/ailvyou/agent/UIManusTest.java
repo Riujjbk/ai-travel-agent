@@ -17,11 +17,12 @@ class UIManusTest {
     void run(){
         String userPrompt = """
                我想去天津旅游，请帮我找到一些推荐景点，
-               并结合一些网络图片，指定一份计划
+               先指定一份计划，后结合一些网络图片下载后插入到PDF中
                并以PDF格式输出 
                 """;
         String result = uiManus.run(userPrompt);
         Assertions.assertNotNull(result);
     }
+
 
 }

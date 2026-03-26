@@ -48,8 +48,8 @@ public class TravelApp {
     @Resource
     private ToolCallback[] allTools;
 
-    @Resource
-    private Advisor  travelAppRagCloudAdvisor;
+   // @Resource
+ //   private Advisor  travelAppRagCloudAdvisor;
 
     @Resource
     private MyPromptTemplate mypromptTemplate;
@@ -232,7 +232,7 @@ public class TravelApp {
                 .advisors(new MyLoggerAdvisor())
                 // 使用到了
                 //.advisors(new QuestionAnswerAdvisor(TravelAppVectorStore))
-                .advisors(travelAppRagCloudAdvisor)
+             //   .advisors(travelAppRagCloudAdvisor)
                 .call()
                 .chatResponse();
         String content = chatResponse.getResult().getOutput().getText();

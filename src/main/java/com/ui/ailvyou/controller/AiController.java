@@ -1,5 +1,6 @@
 package com.ui.ailvyou.controller;
 
+import com.ui.ailvyou.agent.JournalAgent;
 import com.ui.ailvyou.agent.UIManus;
 import com.ui.ailvyou.app.TravelApp;
 import jakarta.annotation.Resource;
@@ -47,7 +48,18 @@ public class AiController {
     @GetMapping("/manus/chat")
     public SseEmitter doChatWithManus(String message,String chatId){
         UIManus  uiManus = new UIManus(callbacks,dashscopeChatModel);
-        return uiManus.runSteam(message);
+        return uiManus.runStream(message);
     }
+
+    /**
+     * 流式调用Journal 超级智能体
+     *
+     */
+    @GetMapping("/journal/chat")
+    public SseEmitter doChatWithJournal(String message,String chatId){
+        JournalAgent  journalAgent = new JournalAgent(callbacks,dashscopeChatModel);
+        return journalAgent.runStream(message);
+    }
+
 
 }

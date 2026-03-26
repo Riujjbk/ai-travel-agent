@@ -11,7 +11,7 @@ public class PDFGenerationToolTest {
     @Test
     public void testGeneratePDF() {
         PDFGenerationTool tool = new PDFGenerationTool();
-        String fileName = "7days旅游推荐.pdf";
+        String fileName = "7days旅游推荐2.pdf";
         String content = "我为你设计了一条经典的云南7日深度游线路，融合自然风光与人文体验：\n" +
                 "\n" +
                 "行程亮点：这条线路串联了丽江古城的世界文化遗产、玉龙雪山的冰川奇观、大理的苍洱风光和香格里拉的高原秘境，让你在7天内体验云南多元的民族文化和壮丽的自然景观。\n" +
@@ -28,7 +28,9 @@ public class PDFGenerationToolTest {
                 "• 第6-7天：前往香格里拉，参观松赞林寺，徒步普达措国家公园，感受藏族文化和高原生态。\n" +
                 "\n" +
                 "旅行建议：云南昼夜温差大，需准备保暖衣物；部分景点海拔较高，建议提前适应并备好抗高反药物；当地美食推荐过桥米线、野生菌火锅和鲜花饼。 ";
-        String result = tool.generatePDF(fileName, content);
+        String result = tool.generatePdf(fileName, content, null);
+
         assertNotNull(result);
+        System.out.println(result);
     }
 }

@@ -5,7 +5,7 @@
       <div 
         class="big-title" 
         :style="{ 
-          transform: `scale(${1 + scrollProgress * 3})`, 
+          transform: `scale(${1 + scrollProgress * 3})`,
           opacity: 1 - scrollProgress * 1.5,
           filter: `blur(${scrollProgress * 10}px)`
         }"
@@ -63,6 +63,24 @@
               </svg>
             </div>
           </button>
+
+          <button class="card" type="button" @click="goJournal">
+            <div class="card-content">
+              <div class="card-icon journal">
+                <span class="icon-emoji">📖</span>
+              </div>
+              <div class="card-text">
+                <div class="card-title">AI 旅游日记</div>
+                <div class="card-desc">记录旅行心情，分享精彩瞬间。</div>
+              </div>
+            </div>
+            <div class="card-cta">
+              <span>立即记录</span>
+              <svg viewBox="0 0 24 24" class="cta-arrow">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" fill="none" />
+              </svg>
+            </div>
+          </button>
         </div>
       </div>
     </section>
@@ -76,6 +94,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 const goTravel = () => router.push("/travel");
 const goManus = () => router.push("/manus");
+const goJournal = () => router.push("/journal");
 
 const container = ref(null);
 const scrollProgress = ref(0);
@@ -83,7 +102,6 @@ const scrollProgress = ref(0);
 const handleScroll = (e) => {
   const scrollTop = e.target.scrollTop;
   const height = e.target.clientHeight;
-  // Calculate progress of first page scrolling out (0 to 1)
   scrollProgress.value = Math.min(Math.max(scrollTop / height, 0), 1);
 };
 
@@ -101,27 +119,29 @@ onMounted(() => {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   background: linear-gradient(180deg, #f4e5d1 0%, #f9f0e6 55%, #fff7f0 100%);
-  scrollbar-width: none; /* Hide scrollbar Firefox */
+  scrollbar-width: none;
 }
 
 .home-container::-webkit-scrollbar {
-  display: none; /* Hide scrollbar Chrome/Safari */
+  display: none;
 }
 
 .section {
   height: 100%;
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   overflow: hidden;
   position: relative;
+  padding: 24px;
 }
 
 .big-title {
-  font-size: clamp(86px, 15vw, 220px);
+  font-size: clamp(72px, 18vw, 220px);
   font-weight: 900;
   letter-spacing: -2px;
   line-height: 1;
@@ -131,18 +151,18 @@ onMounted(() => {
   -webkit-background-clip: text;
   background-clip: text;
   font-family: "Comic Sans MS", "Segoe Script", "Brush Script MT", "Apple Chancery", cursive;
-  text-shadow:
-    0 10px 30px rgba(74, 52, 255, 0.15);
+  text-shadow: 0 10px 30px rgba(74, 52, 255, 0.15);
   filter: saturate(1.1);
   transition: transform 0.05s linear, opacity 0.05s linear, filter 0.05s linear;
   will-change: transform, opacity, filter;
   user-select: none;
+  text-align: center;
 }
 
 /* Scroll Hint Styles */
 .scroll-hint {
   position: absolute;
-  bottom: 40px;
+  bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -190,15 +210,16 @@ onMounted(() => {
 
 /* Second Page Styles */
 .section-title {
-  font-size: 32px;
+  font-size: clamp(28px, 5vw, 36px);
   font-weight: 800;
   color: #191919;
-  margin-bottom: 48px;
+  margin-bottom: 40px;
   text-align: center;
 }
 
 .cards-wrap {
-  width: min(1000px, 92%);
+  width: 100%;
+  max-width: 1000px;
   opacity: 0;
   transform: translateY(60px);
   transition: all 1s cubic-bezier(0.2, 0.9, 0.2, 1);
@@ -213,17 +234,6 @@ onMounted(() => {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
-}
-
-@media (max-width: 768px) {
-  .cards {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .section-title {
-    font-size: 24px;
-    margin-bottom: 32px;
-  }
 }
 
 .card {
@@ -263,13 +273,9 @@ onMounted(() => {
   font-size: 32px;
 }
 
-.card-icon.travel {
-  background: linear-gradient(135deg, #fff1eb 0%, #ace0f9 100%);
-}
-
-.card-icon.manus {
-  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
-}
+.card-icon.travel { background: rgba(46, 90, 61, 0.1); color: #2E5A3D; }
+.card-icon.manus { background: rgba(92, 59, 255, 0.1); color: #5C3BFF; }
+.card-icon.journal { background: rgba(139, 94, 60, 0.1); color: #8B5E3C; }
 
 .card-title {
   font-size: 22px;
@@ -303,5 +309,43 @@ onMounted(() => {
 
 .card:hover .cta-arrow {
   transform: translateX(6px);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 992px) {
+  .cards {
+    gap: 24px;
+  }
+  .card {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .section-title {
+    margin-bottom: 32px;
+  }
+  .scroll-hint {
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 16px;
+  }
+  .card {
+    padding: 20px;
+  }
+  .card-title {
+    font-size: 20px;
+  }
+  .card-desc {
+    font-size: 14px;
+  }
 }
 </style>

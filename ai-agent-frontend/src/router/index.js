@@ -1,9 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../pages/Home.vue";
-import ChatPage from "../pages/ChatPage.vue";
-
-const API_MODE_TRAVEL = "travel";
-const API_MODE_MANUS = "manus";
+import TravelChat from "../pages/TravelChat.vue";
+import ManusChat from "../pages/ManusChat.vue";
+import JournalChat from "../pages/JournalChat.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -16,14 +15,17 @@ const router = createRouter({
     {
       path: "/travel",
       name: "travel",
-      component: ChatPage,
-      props: { mode: API_MODE_TRAVEL }
+      component: TravelChat
     },
     {
       path: "/manus",
       name: "manus",
-      component: ChatPage,
-      props: { mode: API_MODE_MANUS }
+      component: ManusChat
+    },
+    {
+      path: "/journal",
+      name: "journal",
+      component: JournalChat
     },
     {
       path: "/:pathMatch(.*)*",

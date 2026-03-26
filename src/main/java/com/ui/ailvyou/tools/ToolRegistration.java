@@ -27,6 +27,7 @@ public class ToolRegistration {
         PDFGenerationTool pdfGenerationTool = new PDFGenerationTool();
         ResourceDownloadTool resourceDownloadTool = new ResourceDownloadTool();
       //  WebmySearchTool searchTool = new WebmySearchTool();
+        LocalTimeTool localTimeTool = new LocalTimeTool();
         WebScrapingTool webScrapingTool = new WebScrapingTool();
         TerminalOperationTool terminalOperationTool = new TerminalOperationTool();
 
@@ -39,7 +40,8 @@ public class ToolRegistration {
                 webmySearchTool,
                 webScrapingTool,
                 terminalOperationTool,
-                terminateTool
+                terminateTool,
+                localTimeTool
 
         );
 
