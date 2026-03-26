@@ -44,6 +44,7 @@ public class AiController {
      * 流式调用Manus 超级智能体
      *
      */
+    @GetMapping("/manus/chat")
     public SseEmitter doChatWithManus(String message,String chatId){
         UIManus  uiManus = new UIManus(callbacks,dashscopeChatModel);
         return uiManus.runSteam(message);
