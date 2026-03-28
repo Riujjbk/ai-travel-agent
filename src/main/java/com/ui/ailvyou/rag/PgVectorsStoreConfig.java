@@ -15,20 +15,20 @@ public class PgVectorsStoreConfig {
 
 
     //@Bean
-    public VectorStore pgVectorsStore(JdbcTemplate jdbcTemplate,
-                                      EmbeddingModel dashscopeEmbeddingModel){
+//    public VectorStore pgVectorsStore(JdbcTemplate jdbcTemplate,
+//                                      EmbeddingModel dashscopeEmbeddingModel){
+//
+//        VectorStore vectorStore = PgVectorStore.builder(jdbcTemplate, dashscopeEmbeddingModel)
+//                .dimensions(1536)
+//                .distanceType(COSINE_DISTANCE)
+//                .indexType(NONE)
+//                .schemaName("public")
+//                .vectorTableName("vector_store")
+//                .maxDocumentBatchSize(10000)
+//                .build();
+//
+//        return vectorStore;}
 
-        VectorStore vectorStore = PgVectorStore.builder(jdbcTemplate, dashscopeEmbeddingModel)
-                .dimensions(1536)
-                .distanceType(COSINE_DISTANCE)
-                .indexType(NONE)
-                .schemaName("public")
-                .vectorTableName("vector_store")
-                .maxDocumentBatchSize(10000)
-                .build();
 
-        return vectorStore;
-
-    }
 
 }

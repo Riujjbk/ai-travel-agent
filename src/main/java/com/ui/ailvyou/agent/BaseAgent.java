@@ -70,22 +70,25 @@ public abstract class BaseAgent {
      */
     protected boolean recordAndCheckLoop(String fingerprint) {
         if (StrUtil.isBlank(fingerprint)) {
-            return false;
+            return false; // 空指纹直接返回 false
         }
 
         stepHistory.add(fingerprint);
 
+        // 检查是否达到循环阈值（连续 3 次相同）
+        // 检查当前指纹是否与前 N-1 个历史指纹完全一致。
+        // 若全部一致，返回 true（表示陷入循环）；否则返回 false。
         // 检查最后 N 个步骤是否完全一致
         if (stepHistory.size() >= MAX_IDENTICAL_STEPS) {
             int size = stepHistory.size();
             boolean allIdentical = true;
             for (int i = 1; i < MAX_IDENTICAL_STEPS; i++) {
                 if (!fingerprint.equals(stepHistory.get(size - 1 - i))) {
-                    allIdentical = false;
+                    allIdentical = false; // 发现不一致则终止循环
                     break;
                 }
             }
-            return allIdentical;
+            return allIdentical; // 返回是否所有最近 N 步都相同
         }
         return false;
     }

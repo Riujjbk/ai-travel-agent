@@ -103,6 +103,7 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, ref, watch, onMounted } from "vue";
 import MarkdownIt from "markdown-it";
+import { API_BASE_URL } from "../config";
 
 const md = new MarkdownIt({
   html: true,
@@ -114,8 +115,6 @@ const md = new MarkdownIt({
 const renderMarkdown = (content) => {
   return md.render(content);
 };
-
-const API_BASE_URL = "/api";
 
 const currentTime = ref("");
 const textareaEl = ref(null);

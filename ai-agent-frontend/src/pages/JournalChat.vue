@@ -120,6 +120,7 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, ref, watch, onMounted } from "vue";
 import MarkdownIt from "markdown-it";
+import { API_BASE_URL } from "../config";
 
 const md = new MarkdownIt({
   html: true,
@@ -141,8 +142,6 @@ const isMessageThought = (content) => {
   const isJsonLike = content.trim().startsWith("{") && content.trim().endsWith("}");
   return isKeywordMatch || isJsonLike;
 };
-
-const API_BASE_URL = "/api";
 
 const currentDate = ref("");
 const textareaEl = ref(null);

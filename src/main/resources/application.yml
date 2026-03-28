@@ -4,10 +4,23 @@ spring:
   profiles:
     active: local
 
-  datasource:
-    url: jdbc:postgresql://rm-cn-y6e4pfdog0002r6o.rwlb.huhehaote.rds.aliyuncs.com:5432/ai-agent
-    username: travel
-    password: 66euiLQ80
+#  datasource:
+#    url: jdbc:postgresql://rm-cn-y6e4pfdog0002r6o.rwlb.huhehaote.rds.aliyuncs.com:5432/ai-agent
+#    username: travel
+#    password: 66euiLQ80
+
+
+  ai:
+    dashscope:
+      api-key: sk-8467a6ac8fb845f7a5e1bade9dcc5a49
+      chat:
+        options:
+          model: qwen-plus
+
+# searchApi
+search-api:
+  api-key: sD6dKMUN4pAge3Fy2PZZ2vbc
+  url: https://www.searchapi.io/api/v1/search
 
   ai:
     vectorstore:
@@ -16,13 +29,13 @@ spring:
         dimensions: 1536
         distance-type: COSINE_DISTANCE
         max-document-batch-size: 10000 # Optional: Maximum number of documents per batch
-    mcp:
-      client:
-        stdio:
-          servers-configuration: classpath:mcp-servers.json
-        type: sync
-        enabled: true
-        request-timeout: 300000
+#    mcp:
+#      client:
+#        stdio:
+#          servers-configuration: classpath:mcp-servers.json
+#        type: sync
+#        enabled: true
+#        request-timeout: 300000
 
 
 

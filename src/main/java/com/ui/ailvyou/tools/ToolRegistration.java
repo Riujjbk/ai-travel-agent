@@ -18,20 +18,33 @@ public class ToolRegistration {
     private String seachApiKey;
 
     @Autowired
+    private FileOperationTool fileOperationTool;
+
+    @Autowired
+    private PDFGenerationTool pdfGenerationTool;
+
+    @Autowired
+    private ResourceDownloadTool resourceDownloadTool;
+
+    @Autowired
+    private LocalTimeTool localTimeTool;
+
+    @Autowired
+    private WebScrapingTool webScrapingTool;
+
+    @Autowired
     private WebmySearchTool webmySearchTool;
+
+    @Autowired
+    private TerminalOperationTool terminalOperationTool;
+
+    @Autowired
+    private TerminateTool terminateTool;
 
     // 工厂模式
     @Bean
     public ToolCallback[] allTools(){
-        FileOperationTool fileOperationTool = new FileOperationTool();
-        PDFGenerationTool pdfGenerationTool = new PDFGenerationTool();
-        ResourceDownloadTool resourceDownloadTool = new ResourceDownloadTool();
       //  WebmySearchTool searchTool = new WebmySearchTool();
-        LocalTimeTool localTimeTool = new LocalTimeTool();
-        WebScrapingTool webScrapingTool = new WebScrapingTool();
-        TerminalOperationTool terminalOperationTool = new TerminalOperationTool();
-
-        TerminateTool terminateTool = new TerminateTool();
         // 适配器模式 将不同工具转为了ToolCallback[]
         return ToolCallbacks.from(
                 fileOperationTool,
@@ -44,8 +57,6 @@ public class ToolRegistration {
                 localTimeTool
 
         );
-
-
     }
 
 

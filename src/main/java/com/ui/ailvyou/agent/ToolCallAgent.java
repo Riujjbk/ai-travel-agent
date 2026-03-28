@@ -21,7 +21,6 @@ import org.springframework.ai.model.tool.ToolExecutionResult;
 import org.springframework.ai.tool.ToolCallback;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 实现think和act抽象方法
@@ -159,8 +158,12 @@ public class ToolCallAgent extends ReActAgent {
                 String toolName = response.name();
                 String data = String.valueOf(response.responseData());
 
+                // 敏感信息脱敏：过滤绝对路径 (Windows 和 Linux 风格)
+                data = data.replaceAll("[a-zA-Z]:[/\\\\].*?[/\\\\]tmp[/\\\\]", "/tmp/");
+                data = data.replaceAll("/.*?/tmp/", "/tmp/");
+
                 log.info("Agent [{}] 工具 [{}] 执行完成，结果长度: {}", getName(), toolName, data.length());
-                resultSummary.append(String.format("[%s] 结果: %s\n", toolName, data));
+                resultSummary.append(String.format("[%s] 执行成功。%s\n", toolName, data));
 
                 // 检查终止信号
                 if (isTerminationTool(toolName) || data.contains("任务结束")) {
@@ -178,6 +181,8 @@ public class ToolCallAgent extends ReActAgent {
 
     /**
      * 生成当前步骤的唯一指纹 (用于循环检测)
+     * TEXT:发现用户需求不明确，需要进一步确|TOOLS:getTravelPreferences({"user": "123});
+     * validateBudget({"amount": "5000});
      */
     private String generateStepFingerprint(String text, List<AssistantMessage.ToolCall> toolCalls) {
         StringBuilder sb = new StringBuilder();
