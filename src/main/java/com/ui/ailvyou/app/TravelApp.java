@@ -151,7 +151,7 @@ public class TravelApp {
     }
 
     /**
-     * AI 恋爱报告功能（实战结构化输出）
+     * 结构化输出
      *
      * @param message
      * @param chatId
