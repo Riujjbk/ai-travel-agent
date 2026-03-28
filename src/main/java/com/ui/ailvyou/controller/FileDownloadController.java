@@ -309,7 +309,7 @@ public class FileDownloadController {
             @Override
             public InputStream getInputStream() throws IOException {
                 FileInputStream fis = new FileInputStream(file);
-                fis.skip(start); // ✅ 此处访问 final 变量不会报错
+                fis.skip(start); // 此处访问 final 变量不会报错
                 return fis;
             }
         };
