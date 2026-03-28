@@ -6,20 +6,20 @@ spring:
 
 #  datasource:
 #    url: jdbc:postgresql://rm-cn-y6e4pfdog0002r6o.rwlb.huhehaote.rds.aliyuncs.com:5432/ai-agent
-#    username: travel
-#    password: 66euiLQ80
+#    username:
+#    password: 
 
 
   ai:
     dashscope:
-      api-key: sk-8467a6ac8fb845f7a5e1bade9dcc5a49
+      api-key: 
       chat:
         options:
           model: qwen-plus
 
 # searchApi
 search-api:
-  api-key: sD6dKMUN4pAge3Fy2PZZ2vbc
+  api-key: 
   url: https://www.searchapi.io/api/v1/search
 
   ai:
